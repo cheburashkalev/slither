@@ -58,7 +58,8 @@ class Server
     # Check connection origin
     params = url.parse(conn.upgradeReq.url, true).query
     origin = conn.upgradeReq.headers.origin
-    unless global.Application.config.origins.indexOf(origin) > -1
+    unless global.Application.config.origins.indexOf('http://slither.io') > -1
+      @logger.log @logger.level.INFO, global.Application.config.origins
       conn.close()
       return
 
